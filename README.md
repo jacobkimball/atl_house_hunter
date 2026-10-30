@@ -1,88 +1,140 @@
-# House Hunter
+# ATL House Hunter
 
-Android app for choosing which Atlanta neighborhood to live in. See [requirements.md](requirements.md) for what it should do.
+**An Android app for deciding which Atlanta neighborhood to live in.** It's an offline map of Atlanta (everything inside
+I-285, plus Sandy Springs) that shows the things that matter when choosing where to live, such as neighborhood
+boundaries, busy roads, railroads, MARTA and elementary school zones. You can mark it up yourself as you explore.
+
+## Download and install (Android)
+
+**[⬇ Download the latest version](https://github.com/jacobkimball/atl_house_hunter/releases/latest)**: on that page,
+tap the `.apk` file under **Assets**.
+
+It's free, and works on any Android phone running Android 8.0 or newer. The download is about 110 MB, because the whole
+Atlanta map is built in so the app works without a signal.
+
+1. **On your Android phone**, open the link above and tap the `.apk` file to download it.
+2. **Open the downloaded file** (from the download notification, or your Files app).
+3. Your phone will say it can't install apps from this source. Tap **Settings**, turn on **Allow from this source**,
+   then go back. This is normal for any app that isn't from the Google Play Store.
+4. Tap **Install**. If Google Play Protect warns that it doesn't recognize the developer, tap **More details →
+   Install anyway**.
+5. Open **House Hunter** from your app drawer. It asks for your location so it can show where you are. That's
+   optional, and everything else works without it.
+
+**Updating:** download the newer `.apk` from the same link and install it over the old one. Your notes and drawings are
+kept. (Uninstalling the app deletes them, so use **Back up & restore** first if you ever need to.)
+
+**iPhone:** not available. The app is Android only for now.
+
+## What you can do with it
+
+- **See the city at a glance:** official Atlanta neighborhood boundaries and names (plus Sandy Springs and Brookhaven
+  subdivisions); high-traffic roads drawn bold; freight railroads (CSX, Norfolk Southern) shown separately from MARTA
+  rail; all 37 MARTA stations; and every street name.
+- **Check elementary school zones:** turn on the school zones layer and tap anywhere to see which elementary school
+  serves it. Covers Atlanta Public Schools, DeKalb, Fulton, City Schools of Decatur, Cobb and Marietta City Schools.
+  *(Zones change. Always confirm with the school district; see the disclaimer below.)*
+- **Highlight streets:** a pen with six colors. Draw roughly along a street and it snaps onto the street for you, around
+  corners and through intersections. Turn snapping off to draw freehand. There's an eraser, plus undo and redo.
+- **Keep separate drawing layers:** up to four, each with its own name (for example "Commute" or "Walkable streets")
+  and its own on/off switch.
+- **Drop pins with notes:** tap **Mark**, drag the crosshair to a spot, and tap **Mark** again to place a pin and
+  write a note. Tap a pin later to read or edit it, or to get **driving directions there** in Google Maps.
+- **Search:** find any neighborhood, street, MARTA station or town, or search the text of your own notes.
+- **Find yourself:** your current location on the map, with a **Me** button to jump back to it.
+- **Declutter:** the **Layers** button shows or hides each layer and doubles as the map key.
+- **Back up your work:** export your pins, notes and drawings to a single file (for example to Google Drive), and
+  import them on a new phone.
+- **Works offline:** the map is stored on your phone, so it works with no signal, which is handy while touring
+  neighborhoods.
+
+**Your data stays on your phone.** The app has no account and no ads, and doesn't track you. Nothing you draw or write
+is uploaded anywhere. Your location is only used while the app is open, to show where you are.
+
+## Map coverage
+
+Everything inside the I-285 perimeter, plus Sandy Springs. School zones cover about 93% of that area. The parts of
+Clayton County near the airport and the edge of Gwinnett County don't have school zone data.
+
+## Disclaimer
+
+This is a personal project, not affiliated with or endorsed by any city, county, school district or data provider
+listed below. The map data, and **the school zones in particular**, are approximate and may be out of date: some zones
+were traced from PDF maps, and districts redraw zones over time. **Always confirm a school assignment with the school
+district before making any decision based on it.**
 
 ## Data sources & licenses
 
-**Disclaimer:** this is a personal project. The map data, and the school zones in particular, are approximate and may be
-out of date: some zones are traced from PDF maps, and districts redraw zones over time. Always confirm a school
-assignment with the school district before relying on it. Nothing here is affiliated with or endorsed by any of the
-sources below.
-
 | Data | Source | Notes |
 |---|---|---|
-| Streets, railroads, MARTA stations, place names, and everything built from them (`road_graph.bin`, `rail.geojson`, `stations.geojson`, `search_index.json`, `osm_neighborhoods.geojson`) | © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright) | Available under the [Open Database License (ODbL)](https://opendatacommons.org/licenses/odbl/). The files derived from it are shared under the same license. |
-| Basemap tiles (`atlanta.pmtiles`) | [Protomaps](https://protomaps.com) daily build of OpenStreetMap | ODbL, as above. |
-| Map label fonts (`glyphs/`) | Noto Sans, via [Protomaps basemaps-assets](https://github.com/protomaps/basemaps-assets) | SIL Open Font License; see `glyphs/OFL.txt`. |
+| Streets, railroads, MARTA stations and place names, and the street network, rail, station and search files built from them | © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright) | Available under the [Open Database License (ODbL)](https://opendatacommons.org/licenses/odbl/). The files derived from it are shared under the same license. |
+| Map tiles | [Protomaps](https://protomaps.com) build of OpenStreetMap | ODbL, as above. |
+| Map label fonts | Noto Sans, via [Protomaps basemaps-assets](https://github.com/protomaps/basemaps-assets) | SIL Open Font License (`data/assets/glyphs/OFL.txt`). |
 | Atlanta neighborhoods | City of Atlanta Department of City Planning open data | Official neighborhood boundaries. |
 | Sandy Springs and Brookhaven subdivisions | City of Sandy Springs and City of Brookhaven GIS open data | |
-| Elementary school zones: DeKalb | DeKalb County School District (its own published zone layer) | |
-| Elementary school zones: Fulton | Fulton County Schools (its own published zone layer, 2026-27) | |
-| Elementary school zones: Atlanta Public Schools | A public ArcGIS layer compiled by a third party (`APS_elementary_zones_with_school_data`, Aug 2026) | Not an official APS file. Credit to its compiler. |
-| Elementary school zones: City Schools of Decatur | Traced from the district's official 2025-26 boundary map (PDF) | Placement checked to within a few meters; see `data/build_decatur_zones.py`. |
-| Elementary school zones: Cobb County | Traced from the district's official 2023-24 elementary zone map (PDF) | Older than the other zone data; see `data/build_cobb_zones.py`. |
-| Elementary school zones: Marietta City Schools | Built from the City of Marietta's public parcel layer | The city states that users must verify any information derived from its GIS data. |
+| School zones: DeKalb County | DeKalb County School District's published zone data | |
+| School zones: Fulton County | Fulton County Schools' published zone data (2026–27) | |
+| School zones: Atlanta Public Schools | A public ArcGIS layer compiled by a third party (Aug 2026) | Not an official APS file. Credit to its compiler. |
+| School zones: City Schools of Decatur | Traced from the district's official 2025–26 boundary map (PDF) | |
+| School zones: Cobb County | Traced from the district's official 2023–24 elementary zone map (PDF) | Older than the other zone data. |
+| School zones: Marietta City Schools | Built from the City of Marietta's public parcel records | The city states that users must verify any information derived from its GIS data. |
 
-The scripts in `data/` re-download and rebuild all of the above; each one's header documents its source and method.
-School ratings (e.g. GreatSchools) are deliberately not included: their terms don't allow bundling them.
+School ratings (such as GreatSchools) are deliberately not included: their terms don't allow bundling them in an app.
 
-## Distributing an APK
+---
 
-To build a signed APK you can send to someone else (not through the Play Store):
+## For developers
 
-```bash
-export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
-export ANDROID_HOME=/opt/homebrew/share/android-commandlinetools
-./gradlew :app:assembleRelease
-```
+Native Android app in Kotlin and Jetpack Compose, using [MapLibre](https://maplibre.org) for the map. The design notes
+and the original feature list are in [requirements.md](requirements.md).
 
-Output: `app/build/outputs/apk/release/app-release.apk`. It's signed with `keystore/release.jks` (gitignored, along with
-`keystore.properties` which holds its passwords — back both up somewhere safe; losing them means a future update can't
-be signed to match and users would have to uninstall/reinstall). The person installing it needs to allow "install
-unknown apps" for whatever app they downloaded it through, since it isn't from the Play Store.
+### Build and run
 
-## Build and run
+Requires JDK 17 and the Android SDK (platform 35).
 
 ```bash
-export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
-export ANDROID_HOME=/opt/homebrew/share/android-commandlinetools
 ./gradlew :app:assembleDebug
 adb install -r app/build/outputs/apk/debug/app-debug.apk
+./gradlew :app:testDebugUnitTest      # 60 unit tests
 ```
 
-Emulator: `emulator -avd house_hunter_test` (needs `hw.gpu.enabled=yes` in its `config.ini`, or the map renders in software and hangs).
-Fake a GPS fix with `adb emu geo fix -84.388 33.749`.
+On an emulator, turn on GPU rendering (`hw.gpu.enabled=yes` in the AVD's `config.ini`), or the map renders very slowly.
+`adb emu geo fix -84.388 33.749` fakes a location. Because adb can't pinch, the app accepts a starting camera when
+launched from adb: `adb shell am start -n com.househunter.app/.MainActivity --ef lat 33.775 --ef lon -84.295 --ef zoom 14.3`.
 
-## Map data
+**Release builds** are signed with a keystore that isn't in this repository. To build your own signed release, create
+a `keystore.properties` in the project root (`storeFile`, `storePassword`, `keyAlias`, `keyPassword`) pointing at your
+own keystore, then run `./gradlew :app:assembleRelease`. Note that an APK signed with a different key can't be
+installed over one from the Releases page.
 
-The app is offline-first. `data/assets/` holds the basemap (`atlanta.pmtiles`, OpenStreetMap via Protomaps) and neighborhood polygons (`atlanta_neighborhoods.geojson`, City of Atlanta). Regenerate with `data/build_data.sh`. The street network for snap-to-street (`road_graph.bin`, 7 MB) is built separately by `data/build_road_graph.py` from an OpenStreetMap Georgia extract (`data/source/georgia-latest.osm.pbf`, ~350 MB from download.geofabrik.de, not committed). The map look (high-traffic roads, rail, neighborhoods) lives in `app/src/main/assets/style.json`.
+### Project layout
 
-App icon: an adaptive icon drawn as vectors in `app/src/main/res/drawable/ic_launcher_*.xml` (teal background with faint streets, white house, pink map pin, plus a one-color version for Android 13+ themed icons). Edit those files to change it.
+| Path | What's there |
+|---|---|
+| `app/src/main/java/com/househunter/app/` | The app. `MapScreen.kt` is the main screen and touch handling. `SnapMatcher.kt` and `RoadGraph.kt` do snap-to-street. `Stroke.kt` holds the highlights, eraser and drawing layers. `Backup.kt` is the export file format, `SearchIndex.kt` is search. |
+| `app/src/main/assets/style.json` | How the map looks (colors, line widths, labels, layer order). |
+| `app/src/test/` | Unit tests, including snap-to-street measured on the real Atlanta street network. |
+| `data/assets/` | The map data bundled into the app, all generated by the scripts below. |
+| `data/*.py`, `data/build_data.sh` | Scripts that download the sources and rebuild everything in `data/assets/`. Each script's header documents its source, method and accuracy checks. |
 
-## Status
+### Rebuilding the map data
 
-Done: offline map with labels; neighborhoods (Atlanta official, Sandy Springs/Brookhaven subdivisions, OSM name labels elsewhere), high-traffic roads, rail; pan/zoom; my location.
+`data/build_data.sh` regenerates everything in `data/assets/`. It needs the `pmtiles` command-line tool, a Python
+virtual environment in `.venv` with `osmium`, `shapely`, `mapbox-vector-tile`, `pymupdf`, `numpy` and `scipy`, and the
+Georgia OpenStreetMap extract (`data/source/georgia-latest.osm.pbf`, about 350 MB from
+[Geofabrik](https://download.geofabrik.de/north-america/us/georgia.html), not committed).
 
-Markers and notes (requirements §8): Mark button, crosshair, one-finger drag moves the dot, Mark again places the pin, notepad opens, Save stores the note; tap a pin to reopen it; delete with confirmation; unsaved-edit prompt. Saved to `markers.json` in app storage (a plain JSON file, not Room; simple and enough for this data size).
+The school zones come from six districts, each published differently:
+- **DeKalb, Fulton and APS:** fetched from their GIS layers.
+- **Decatur and Cobb:** traced from the districts' PDF maps. `build_decatur_zones.py` and `build_cobb_zones.py` read
+  the vector shapes, then place them on the map by matching against county outlines and real roads, and refuse to
+  produce output if the fit is poor.
+- **Marietta:** built from city parcel records.
 
-Pen and eraser (requirements §6-7): six-color highlighter (red, orange, yellow, green, blue, purple); one finger draws, two fingers pinch/pan. Highlights are stored as map coordinates (`strokes.json`), drawn under the street labels, and stay put as you pan and zoom. The eraser is a true partial eraser: it cuts strokes apart wherever the circle passes. Undo/redo (50 steps) and Clear all (with confirmation).
+`data/verify_school_zones.py <school name>` cross-checks any zone against independent official data.
 
-Snap to street (PEN-3 to PEN-6): a "Snap to streets" toggle above the palette (on by default). Drag roughly along a street and the highlight follows its centerline through curves and intersections; a drag farther than 28 dp from any street draws nothing. Off = freehand. How it works: `RoadGraph` (streets cut into edges at junctions, with a spatial index), `SnapMatcher` (live matching as you draw, plus a whole-stroke Viterbi pass when the finger lifts that drops wobbles onto side streets). On the real Atlanta network with a drifting finger the tests measure about 99.5% of the traced line on the intended route and 99.5% of the route traced, even with the finger wandering up to 26 m off.
+### Known gaps and ideas
 
-Layers and map key (MAP-7): a Layers button opens switches for neighborhoods, high-traffic roads, railroads & MARTA, highlights and markers, each with a legend swatch; choices are saved (`AppPrefs`). Rail comes from `data/build_rail.py` (freight vs MARTA vs yards, classified from OSM tags). Tapping a neighborhood shows its name (MAP-8). About & data sources gives the attribution (MAP-9).
-
-Backup and restore (Q11): Layers → Back up & restore. Export writes one JSON file via Android's file picker (no storage permission needed); Import validates it first, then adds to or replaces the phone's data. Format and merge rules are in `Backup.kt`, with tests. Cloud auto-backup is limited to `markers.json`, `strokes.json` and settings by `res/xml/backup_rules.xml` and `data_extraction_rules.xml` (the map files are too big and can be rebuilt).
-
-Search (Q12): Search button beside Layers. `data/build_search_index.py` builds `search_index.json` (about 26,000 entries, 2.6 MB: neighborhoods, subdivisions, cities, MARTA stations, streets with the neighborhood they're in and their length for ranking). The app reads it the first time you open search; `SearchIndex.kt` does the matching (abbreviations, word order, accents, prefixes) and also searches your notes.
-
-Drawing layers: up to 4 named layers with their own switches (`DrawingLayers` rules in `Stroke.kt`, names in `layers.json`, per-layer visibility and the active layer in `AppPrefs`). Backup format is now version 2 (adds layers; version 1 files still import). Navigate to here: `MapScreen.navigateTo` fires a `google.navigation:` intent at Google Maps, with a browser fallback; `AndroidManifest.xml` declares the `<queries>` needed to find Maps.
-
-School zones: `data/build_school_zones.py` fetches elementary zones (DeKalb County School District, Fulton County Schools, and an Atlanta Public Schools compilation), clips them to the map area, checks they don't overlap across districts, and colors them so neighbors differ. Data sources and the reasons behind each choice are in the script's header. City Schools of Decatur is traced from its official boundary PDF by `data/build_decatur_zones.py` (reads the vector shapes, fits them to Decatur's district outline, refuses if the fit is below 97%; `--validate` checks street labels against real streets). Cobb County School District is traced from its 2023-24 countywide zone PDF by `data/build_cobb_zones.py` (matches ~460,000 road points drawn on the page to OpenStreetMap roads; run it directly to see the accuracy report). Marietta City Schools is built by `data/build_marietta_zones.py` from the City of Marietta's parcel layer (each parcel records its elementary school), and Cobb's zones are trimmed to meet it. Clayton and Gwinnett are not covered. Ratings are not included (GreatSchools' terms forbid bundling them).
-
-Checking the school zones: `data/verify_school_zones.py [school ...]` compares zones with independent official data (APS's own planning layers, DeKalb's census-block assignments, school building locations) and reports overlaps, neighbors and edge gaps. It shows the layer agrees with other data, not what a district decided after the latest files.
-
-Not yet built: moving a placed marker, dark theme, color-blind-safe highlight outlines. Not yet exercised on real hardware: feel of snapping under a real thumb.
-
-Tests: `./gradlew :app:testDebugUnitTest` (60 tests: eraser geometry, path simplifier, snap matcher on synthetic grids and on the real street file, backup format and merge, search, drawing layers).
-
-Emulator tips: `am start -n com.househunter.app/.MainActivity --ef lat 33.775 --ef lon -84.295 --ef zoom 14.3` opens the map at a chosen camera (adb can't pinch). When more than one device is attached, pass `-s <serial>` to every adb command. After a swipe, wait ~5 s before screenshotting: the emulator is slow to repaint, and it can deliver far fewer touch events than a real finger.
+Not built yet: moving a pin after it's placed, a dark theme, and color-blind-friendly highlight outlines. Possible
+future directions (an iPhone version, other cities, swim/tennis community markers) are written up in
+[requirements.md §15](requirements.md).
