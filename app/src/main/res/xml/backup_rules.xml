@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 11 and older. Only the user's own data goes to the cloud backup: the map files are large and can be
+     recreated, and would push the app over the size limit for automatic backups. -->
+<full-backup-content>
+    <include domain="file" path="markers.json" />
+    <include domain="file" path="strokes.json" />
+    <include domain="file" path="layers.json" />
+    <include domain="sharedpref" path="househunter.xml" />
+</full-backup-content>

@@ -1,0 +1,22 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+app/build
+*.apk
+*.aab
+.kotlin
+.venv
+data/source/
+
+# Signing secrets - never commit these
+keystore.properties
+keystore/
+*.jks
+*.keystore
+
+# Build output and local downloads
+dist/
