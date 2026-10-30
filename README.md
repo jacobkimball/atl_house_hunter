@@ -4,6 +4,16 @@
 I-285, plus Sandy Springs) that shows the things that matter when choosing where to live, such as neighborhood
 boundaries, busy roads, railroads, MARTA and elementary school zones. You can mark it up yourself as you explore.
 
+<table>
+  <tr>
+    <td align="center"><img src="docs/screenshots/1-map.png" width="170" alt="Map of intown Atlanta with neighborhoods, MARTA and rail"><br><sub>Neighborhoods, MARTA &amp; rail</sub></td>
+    <td align="center"><img src="docs/screenshots/2-school-zones.png" width="170" alt="Elementary school zones, with the zone for a tapped spot shown"><br><sub>Elementary school zones</sub></td>
+    <td align="center"><img src="docs/screenshots/3-highlights-and-pins.png" width="170" alt="Streets highlighted in color, with pins and note previews"><br><sub>Highlight streets, drop pins</sub></td>
+    <td align="center"><img src="docs/screenshots/4-notes.png" width="170" alt="A pin's note open, with a Navigate to here link"><br><sub>Notes &amp; directions</sub></td>
+    <td align="center"><img src="docs/screenshots/5-layers.png" width="170" alt="The Layers panel with switches and named drawing layers"><br><sub>Layers &amp; your own drawing layers</sub></td>
+  </tr>
+</table>
+
 ## Download and install (Android)
 
 **[⬇ Download the latest version](https://github.com/jacobkimball/atl_house_hunter/releases/latest)**: on that page,
@@ -80,6 +90,13 @@ district before making any decision based on it.**
 | School zones: Marietta City Schools | Built from the City of Marietta's public parcel records | The city states that users must verify any information derived from its GIS data. |
 
 School ratings (such as GreatSchools) are deliberately not included: their terms don't allow bundling them in an app.
+
+## License
+
+The app's source code is released under the [MIT License](LICENSE).
+
+The map data in `data/assets/` is **not** covered by the MIT License. It stays under the terms of its sources listed
+above: in particular, the files built from OpenStreetMap remain under the ODbL.
 
 ---
 
